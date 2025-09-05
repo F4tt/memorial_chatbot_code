@@ -1,0 +1,6 @@
+.env
+data/
+models/
+wandb
+memorial_chatbot_dts/
+__pycache__/
