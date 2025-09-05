@@ -4,3 +4,5 @@ models/
 wandb
 memorial_chatbot_dts/
 __pycache__/
+.gitignore
+scripts/split_data.py
