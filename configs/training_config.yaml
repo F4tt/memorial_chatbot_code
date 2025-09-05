@@ -1,0 +1,46 @@
+# Cấu hình huấn luyện
+model:
+  name: "mistralai/Mistral-7B-Instruct-v0.3"
+  load_in_4bit: true
+  device_map: "auto"
+
+lora:
+  r: 16
+  lora_alpha: 32
+  target_modules: ["q_proj", "v_proj", "k_proj", "o_proj"]
+  lora_dropout: 0.1
+  bias: "none"
+
+training:
+  output_dir: "./models/finetuned"
+  learning_rate: 2.0e-4
+  num_train_epochs: 3
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 4
+  warmup_steps: 100
+  weight_decay: 0.01
+  logging_steps: 10
+  save_steps: 500
+  eval_steps: 500
+  evaluation_strategy: "steps"
+  save_strategy: "steps"
+  load_best_model_at_end: true
+  metric_for_best_model: "eval_loss"
+  greater_is_better: false
+  dataloader_num_workers: 4
+  remove_unused_columns: false
+  report_to: "wandb"
+
+generation:
+  max_length: 512
+  temperature: 0.7
+  top_p: 0.9
+  do_sample: true
+  pad_token_id: 2
+
+data:
+  train_file: "./data/processed/train.jsonl"
+  val_file: "./data/processed/val.jsonl"
+  max_length: 512
+  train_split: 0.8
