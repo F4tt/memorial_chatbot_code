@@ -40,7 +40,5 @@ generation:
   pad_token_id: 2
 
 data:
-  train_file: "./data/processed/train.jsonl"
-  val_file: "./data/processed/val.jsonl"
-  max_length: 512
-  train_split: 0.8
+  hf_dataset: "F4t/memorial_chatbot_dts"   # đúng tên dataset trên HF của bạn
+  max_length: 1024

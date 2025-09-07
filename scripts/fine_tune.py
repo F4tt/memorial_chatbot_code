@@ -182,7 +182,7 @@ class LLMFineTuner:
             remove_unused_columns=self.config['training']['remove_unused_columns'],
             report_to=self.config['training']['report_to'],
             run_name=f"personal-chatbot-{wandb.util.generate_id()}",
-            fp16=use_cuda,  # enable fp16 only if GPU is available
+            bf16=use_cuda  # enable bf16 only if GPU is available
         )
 
         data_collator = DataCollatorForLanguageModeling(
